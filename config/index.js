@@ -1,0 +1,2 @@
+require('./firebase')
+require('./database')
