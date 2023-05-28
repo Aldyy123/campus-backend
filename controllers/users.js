@@ -1,3 +1,4 @@
+const db = require('../models');
 const registerUser = (req, res) => {
     
 }
