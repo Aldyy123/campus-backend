@@ -12,26 +12,27 @@ module.exports =  (sequelize, DataTypes) => {
             primaryKey: true,
             defaultValue: Sequelize.UUIDV4,
         },
-        email: DataTypes.STRING,
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: {
+                name: 'email',
+                msg: 'Email sudah ada'
+            },
+            validate: {
+                isEmail: true,
+            }
+        },
         password: DataTypes.STRING,
-        phone: DataTypes.STRING,
-        role: DataTypes.STRING,
+        role: {
+            type: DataTypes.ENUM('mahasiswa', 'dosen', 'admin'),
+            defaultValue: 'mahasiswa',
+            allowNull: false,
+        },
         extra: DataTypes.JSONB,
-        token: DataTypes.STRING
     }, {
         sequelize,
         modelName: 'User',
-        hooks: {
-            beforeCreate: function (ping, options, fn) {
-                ping.createdAt = new Date()
-                ping.updatedAt = new Date()
-                // fn(null, ping);
-            },
-            beforeUpdate: function (ping, options, fn) {
-                ping.updatedAt = new Date()
-                // fn(null, ping);
-            },
-        },
     })
     return User
 }
