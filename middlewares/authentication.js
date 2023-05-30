@@ -1,9 +1,29 @@
-const authentication = (req, res, next) => {
-    const {Authorization} = req.header
-    if (user) {
-        return next()
+const authentication = async (req, res, next) => {
+    try {
+        const {
+            authorization
+        } = req.headers
+        if (authorization === undefined) {
+            return res.status(403).json({
+                message: 'Sorry token not found'
+            })
+        }
+
+        const token = authorization.split(' ')[1]
+        const decodedToken = await initAdmin.auth().verifyIdToken(token)
+        const user = await User.findOne({
+            where: {
+                email: decodedToken.email
+            }
+        })
+        if (decodedToken.email === user.email) {
+            return next()
+        } else {
+            return res.status(403).json({
+                message: 'You are not authorized'
+            })
+        }
+    } catch (error) {
+        return next(error)
     }
-    return res.status(403).json({
-        message: 'You are not authenticated'
-    })
 }

@@ -4,7 +4,6 @@ const app = express();
 const cors = require('cors');
 const helmet = require('helmet');
 
-require('./config');
 // Mengimport jalur API
 const routes = require('./routes');
 const errorHandler = require('./middlewares/errorHandle');

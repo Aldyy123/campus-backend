@@ -12,12 +12,12 @@ const authorization = async (req, res, next) => {
     const token = authorization.split(' ')[1]
     const decodedToken = await initAdmin.auth().verifyIdToken(token)
     if(decodedToken.role === 'dosen') {
-
+        return next()
+    }else{
+        return res.status(403).json({
+            message: 'You are not authorized'
+        })
     }
-    console.log(decodedToken);
-    return res.status(403).json({
-        message: 'You are not authorized'
-    })
    } catch (error) {
     return next(error)
    }
