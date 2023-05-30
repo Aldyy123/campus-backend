@@ -3,7 +3,9 @@ const {
 } = require('../models');
 const {
     signInWithEmailAndPassword,
-    getAuth
+    signInWithCustomToken,
+    getAuth,
+    createUserWithEmailAndPassword
 } = require('firebase/auth')
 const {
     initAdmin
@@ -13,27 +15,18 @@ const insertUser = async (req, res, next) => {
     try {
         const {
             email,
-            password,
-            token
         } = req.body
-        if (token === undefined) {
-            return res.status(403).json({
-                message: 'Sorry token not found'
-            })
-        }
-        const decodedToken = await initAdmin.auth().verifyIdToken(token)
         const user = await User.findOrCreate({
             where: {
-                id: decodedToken.id
+                email: req.decodeToken.email
             },
             defaults: {
-                role: 'mahasiswa',
+                role: req.decodeToken.role,
                 email,
-                password
             }
         })
         res.json({
-            user
+            user: user[0],
         })
     } catch (error) {
         return next(error)
@@ -44,10 +37,16 @@ const signInEmail = async (req, res, next) => {
     try {
         const {
             email,
-            password
+            password,
+            role
         } = req.body
+        const authAdmin = initAdmin.auth()
         const auth = getAuth()
-        const userLogin = await signInWithEmailAndPassword(auth, email, password)
+        const users = await signInWithEmailAndPassword(auth, email, password)
+        const token = await authAdmin.createCustomToken(users.user.uid, {
+            role
+        })
+        const userLogin = await signInWithCustomToken(auth, token)
         res.json({
             message: 'Successfully login',
             user: userLogin.user
@@ -57,7 +56,31 @@ const signInEmail = async (req, res, next) => {
     }
 }
 
+const findUser = async (email) => {
+    try {
+        const user = await User.findOne({
+            where: {
+                email
+            }
+        })
+        return user
+    } catch (error) {
+        return error
+    }
+}
+
+const updateUser = async (id, data) => {
+    try {
+        const user = await User.update({
+
+        })
+    } catch (error) {
+        return next(error)
+    }
+}
+
 module.exports = {
     insertUser,
-    signInEmail
+    signInEmail,
+    findUser
 }

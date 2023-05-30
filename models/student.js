@@ -6,11 +6,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class Student extends Model {
         static associate(models) {
-            Student.hasMany(models.Lesson, {
-                foreignKey: 'class',
-                as: 'lesson',
-            })
-            Student.hasMany(models.User, {
+            Student.belongsTo(models.User, {
                 foreignKey: 'id',
                 as: 'user',
             })
@@ -27,15 +23,23 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         nim: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER(20),
             unique: {
                 name: 'nim',
                 msg: 'Maaf NIM sudah ada'
             },
             allowNull: false,
         },
-        class: {
+        classmate: {
             type: DataTypes.STRING,
+            allowNull: false,
+        },
+        major: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        start_year: {
+            type: DataTypes.STRING(9),
             allowNull: false,
         },
         extra: DataTypes.JSONB,

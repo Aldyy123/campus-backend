@@ -5,6 +5,17 @@ const {
 
 module.exports =  (sequelize, DataTypes) => {
     class User extends Model {
+        static associate(models) {
+            User.hasMany(models.Lecturer, {
+                foreignKey: 'id',
+                as: 'lecturer',
+            })
+
+            User.hasMany(models.Student, {
+                foreignKey: 'id',
+                as: 'student',
+            })
+        }
     }
     User.init({
         id: {
@@ -23,7 +34,6 @@ module.exports =  (sequelize, DataTypes) => {
                 isEmail: true,
             }
         },
-        password: DataTypes.STRING,
         role: {
             type: DataTypes.ENUM('mahasiswa', 'dosen', 'admin'),
             defaultValue: 'mahasiswa',

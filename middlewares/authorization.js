@@ -1,26 +1,33 @@
-const {initAdmin} = require('../config/firebase')
-
+const {
+    initAdmin
+} = require('../config/firebase')
+const {
+    findUser
+} = require('../controllers/user')
 const authorization = async (req, res, next) => {
-   try {
-    const {authorization} = req.headers
-    if(authorization === undefined) {
-        return res.status(403).json({
-            message: 'Sorry token not found'
-        })
-    }
+    try {
+        const {
+            authorization
+        } = req.headers
+        if (authorization === undefined) {
+            return res.status(403).json({
+                message: 'Sorry token not found'
+            })
+        }
 
-    const token = authorization.split(' ')[1]
-    const decodedToken = await initAdmin.auth().verifyIdToken(token)
-    if(decodedToken.role === 'dosen') {
-        return next()
-    }else{
-        return res.status(403).json({
-            message: 'You are not authorized'
-        })
+        const token = authorization.split(' ')[1]
+        const decodedToken = await initAdmin.auth().verifyIdToken(token)
+        if (decodedToken?.uid) {
+            req.decodeToken = decodedToken
+            return next()
+        } else {
+            return res.status(403).json({
+                message: 'You are not authorized'
+            })
+        }
+    } catch (error) {
+        return next(error)
     }
-   } catch (error) {
-    return next(error)
-   }
 }
 
 module.exports = authorization

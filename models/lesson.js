@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
                 as: 'lecturer',
             })
             Lesson.belongsTo(models.Student, {
-                foreignKey: 'class',
+                foreignKey: 'classmate',
                 as: 'student',
             })
         }
