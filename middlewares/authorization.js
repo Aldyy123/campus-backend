@@ -2,7 +2,8 @@ const {
     initAdmin
 } = require('../config/firebase')
 const {
-    findUser
+    findUser,
+    checkUserExist
 } = require('../controllers/user')
 const authorization = async (req, res, next) => {
     try {

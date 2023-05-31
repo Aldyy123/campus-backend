@@ -10,6 +10,6 @@ const authorization = require('../middlewares/authorization');
 const router = require('express').Router();
 
 router.route('/').post(authorization, insertBiodataStudent)
-router.route('/id/:id').get(authorization, findOneStudent).delete(authorization, deleteUser).put(authorization, updateOneStudent)
+router.route('/id/:id').get(authorization, findOneStudent).put(authorization, updateOneStudent)
 
 module.exports = router;

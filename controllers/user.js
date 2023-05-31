@@ -72,12 +72,19 @@ const findOneUser = async (email) => {
 
 const deleteUser = async (req, res, next) => {
     try {
+        const authAdmin = await initAdmin.auth()
+        const userExist = await checkUserExist('id', req.params.id)
+        if(!userExist){
+            return res.status(404).json({
+                message: "User not found"
+            })
+        }
         const user = await User.destroy({
             where: {
                 id: req.params.id
             }
         })
-        console.log(user);
+        await authAdmin.deleteUser(req.decodeToken.uid)
         return res.status(200).json({
             message: "Success delete user",
             data: user
@@ -97,9 +104,26 @@ const updateUser = async (id, data) => {
     }
 }
 
+const checkUserExist = async (field, value) => {
+    try {
+        const user = await User.findOne({
+            where: {
+                [field]: value
+            }
+        })
+        if(user){
+            return true
+        }
+        return false
+    } catch (error) {
+        return next(error)
+    }
+}
+
 module.exports = {
     insertUser,
     signInEmail,
     findOneUser,
-    deleteUser
+    deleteUser,
+    checkUserExist
 }

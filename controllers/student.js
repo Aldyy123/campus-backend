@@ -1,9 +1,10 @@
+const { initAdmin } = require('../config/firebase');
 const {
     Student,
     User
 } = require('../models');
 const {
-    findOneUser
+    findOneUser, checkUserExist
 } = require('./user');
 
 const insertBiodataStudent = async (req, res, next) => {
@@ -32,6 +33,11 @@ const findOneStudent = async (req, res, next) => {
             },
             include: 'user'
         })
+        if(!student){
+            return res.status(404).json({
+                message: "Student not found"
+            })
+        }
         return res.status(200).json({
             message: "Success get student",
             data: student
@@ -41,8 +47,31 @@ const findOneStudent = async (req, res, next) => {
     }
 }
 
-const updateOneStudent = async (req, res, next) => {
+const checkStudentExist = async (field, value) => {
     try {
+        const student = await Student.findOne({
+            where: {
+                [field]: value
+            }
+        })
+        if(student){
+            return true
+        }
+        return false
+    } catch (error) {
+        return error
+    }
+}
+
+const updateOneStudent = async (req, res, next) => {
+    const authAdmin = initAdmin.auth()
+    try {
+        const studentExist = await checkStudentExist('id', req.params.id)
+        if(!studentExist){
+            return res.status(404).json({
+                message: "Student not found"
+            })
+        }
         await Student.update({
             ...req.body
         }, {
@@ -50,13 +79,18 @@ const updateOneStudent = async (req, res, next) => {
                 id: req.params.id
             }
         })
-        await User.update({
-            email: req.body.email,
-        }, {
-            where: {
-                id: req.params.id
-            }
-        })
+        if(req.body?.email){
+            await User.update({
+                email: req.body.email,
+            }, {
+                where: {
+                    id: req.params.id
+                }
+            })
+            await authAdmin.updateUser(req.decodeToken.uid, {
+                email: req.body.email
+            })
+        }
         return res.status(200).json({
             message: "Success update student",
         })
@@ -85,5 +119,6 @@ module.exports = {
     insertBiodataStudent,
     findOneStudent,
     updateOneStudent,
-    deleteOneStudent
+    deleteOneStudent,
+    checkStudentExist
 }
