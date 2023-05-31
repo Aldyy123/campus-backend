@@ -56,16 +56,34 @@ const signInEmail = async (req, res, next) => {
     }
 }
 
-const findUser = async (email) => {
+const findOneUser = async (email) => {
     try {
         const user = await User.findOne({
             where: {
                 email
-            }
+            },
+            include: 'student'
         })
         return user
     } catch (error) {
         return error
+    }
+}
+
+const deleteUser = async (req, res, next) => {
+    try {
+        const user = await User.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+        console.log(user);
+        return res.status(200).json({
+            message: "Success delete user",
+            data: user
+        })
+    } catch (error) {
+        return next(error)
     }
 }
 
@@ -82,5 +100,6 @@ const updateUser = async (id, data) => {
 module.exports = {
     insertUser,
     signInEmail,
-    findUser
+    findOneUser,
+    deleteUser
 }

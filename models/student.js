@@ -6,9 +6,11 @@ const {
 module.exports = (sequelize, DataTypes) => {
     class Student extends Model {
         static associate(models) {
-            Student.belongsTo(models.User, {
+            Student.hasOne(models.User, {
                 foreignKey: 'id',
                 as: 'user',
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE',
             })
         }
     }

@@ -3,9 +3,9 @@ const errorHandler = (error, request, response, next) => {
 
     if (error?.original?.code === '23505') {
         return response.status(status).json({
-            message: error.message,
+            message: error.original.message,
             error: true,
-            status: 404
+            status: status
         })
     }
 
@@ -13,7 +13,7 @@ const errorHandler = (error, request, response, next) => {
         return response.status(status).json({
             message: error.errorInfo.message,
             error: true,
-            status: 404
+            status: status
         })
     }
 
