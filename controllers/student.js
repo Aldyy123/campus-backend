@@ -1,5 +1,10 @@
-const { Student } = require('../models');
-const { findOneUser } = require('./user');
+const {
+    Student,
+    User
+} = require('../models');
+const {
+    findOneUser
+} = require('./user');
 
 const insertBiodataStudent = async (req, res, next) => {
     try {
@@ -38,8 +43,15 @@ const findOneStudent = async (req, res, next) => {
 
 const updateOneStudent = async (req, res, next) => {
     try {
-        const student = await Student.update({
+        await Student.update({
             ...req.body
+        }, {
+            where: {
+                id: req.params.id
+            }
+        })
+        await User.update({
+            email: req.body.email,
         }, {
             where: {
                 id: req.params.id
@@ -47,7 +59,6 @@ const updateOneStudent = async (req, res, next) => {
         })
         return res.status(200).json({
             message: "Success update student",
-            data: student
         })
     } catch (error) {
         return next(error)
