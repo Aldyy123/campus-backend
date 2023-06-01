@@ -9,8 +9,14 @@ module.exports =  (sequelize, DataTypes) => {
             User.hasOne(models.Student, {
                 foreignKey: 'id',
                 as: 'student',
-                onDelete: 'CASCADE',
-                onUpdate: 'CASCADE',
+                onDelete: 'cascade',
+                onUpdate: 'cascade',
+            })
+            User.hasOne(models.Lecturer, {
+                foreignKey: 'id',
+                as: 'lecturer',
+                onDelete: 'cascade',
+                onUpdate: 'cascade',
             })
         }
     }

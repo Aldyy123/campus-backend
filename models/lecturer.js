@@ -1,6 +1,18 @@
-const {Model, Sequelize} = require('sequelize')
+const {
+    Model,
+    Sequelize
+} = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
     class Lecturer extends Model {
+        static associate(models) {
+            // define association here
+            Lecturer.belongsTo(models.User, {
+                foreignKey: 'id',
+                as: 'user',
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE',
+            })
+        }
     }
     Lecturer.init({
         id: {

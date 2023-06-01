@@ -10,7 +10,17 @@ const {
 const insertBiodataStudent = async (req, res, next) => {
     try {
         const decodeToken = req.decodeToken
-        const user = await findOneUser(decodeToken.email)
+        const user = await findOneUser(decodeToken.email, 'student')
+        if(!user){
+            return res.status(404).json({
+                message: "User not found"
+            })
+        }
+        if(decodeToken.role === `dosen`){
+            return res.status(403).json({
+                message: "Forbidden"
+            })
+        }
         const student = await Student.create({
             ...req.body,
             email: user.email,
@@ -101,6 +111,12 @@ const updateOneStudent = async (req, res, next) => {
 
 const deleteOneStudent = async (req, res, next) => {
     try {
+        const studentExist = await checkStudentExist('id', req.params.id)
+        if(!studentExist){
+            return res.status(404).json({
+                message: "Student not found"
+            })
+        }
         const student = await Student.destroy({
             where: {
                 id: req.params.id

@@ -5,6 +5,7 @@ const {
     signInWithEmailAndPassword,
     signInWithCustomToken,
     getAuth,
+    sendPasswordResetEmail,
     createUserWithEmailAndPassword
 } = require('firebase/auth')
 const {
@@ -56,13 +57,41 @@ const signInEmail = async (req, res, next) => {
     }
 }
 
-const findOneUser = async (email) => {
+const signUpEmail = async (req, res, next) => {
+    try {
+        const {
+            email,
+            password,
+            role
+        } = req.body
+        if(!role){
+            return res.status(400).json({
+                message: 'Role is required'
+            })
+        }
+        const authAdmin = initAdmin.auth()
+        const auth = getAuth()
+        const users = await createUserWithEmailAndPassword(auth, email, password)
+        const token = await authAdmin.createCustomToken(users.user.uid, {
+            role
+        })
+        const userLogin = await signInWithCustomToken(auth, token)
+        res.json({
+            message: 'Successfully register',
+            user: userLogin.user
+        })
+    } catch (error) {
+        return next(error)
+    }
+}
+
+const findOneUser = async (email, relational) => {
     try {
         const user = await User.findOne({
             where: {
                 email
             },
-            include: 'student'
+            include: relational
         })
         return user
     } catch (error) {
@@ -120,10 +149,31 @@ const checkUserExist = async (field, value) => {
     }
 }
 
+const sendEmailForgotPassword = async (req, res, next) => {
+    try {
+        const auth = await getAuth()
+        const userExist = await checkUserExist('email', req.body.email)
+        if(!userExist){
+            return res.status(404).json({
+                message: "User not found"
+            })
+        }
+        const emailSend = await sendPasswordResetEmail(auth, req.body.email)
+        console.log(emailSend);
+        return res.status(200).json({
+            message: "Success send email forgot password",
+        })
+    } catch (error) {
+        return next(error)
+    }
+}
+
 module.exports = {
     insertUser,
     signInEmail,
     findOneUser,
     deleteUser,
-    checkUserExist
+    checkUserExist,
+    sendEmailForgotPassword,
+    signUpEmail
 }
