@@ -1,8 +1,8 @@
 const { createLesson} = require('../controllers/lesson');
-const authorization = require('../middlewares/authorization');
+const authentication = require('../middlewares/authentication');
 const router = require('express').Router();
 
 
-router.route('/').post(authorization, createLesson)
+router.route('/').post(authentication, createLesson)
 
 module.exports = router;

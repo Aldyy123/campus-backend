@@ -1,4 +1,5 @@
 const { checkUserExist } = require("../controllers/user");
+const { initAdmin } = require("../config/firebase");
 const { User } = require("../models");
 const authentication = async (req, res, next) => {
   try {
@@ -11,13 +12,8 @@ const authentication = async (req, res, next) => {
 
     const token = authorization.split(" ")[1];
     const decodedToken = await initAdmin.auth().verifyIdToken(token);
-    const user = await User.findOne({
-      where: {
-        email: decodedToken.email,
-      },
-    });
     const userExist = await checkUserExist("email", decodedToken.email);
-    if (decodedToken.email === user.email && userExist) {
+    if (decodedToken.uid && userExist) {
       req.decodeToken = decodedToken;
       return next();
     } else {
@@ -29,3 +25,5 @@ const authentication = async (req, res, next) => {
     return next(error);
   }
 };
+
+module.exports = authentication;

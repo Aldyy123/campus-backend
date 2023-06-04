@@ -37,18 +37,11 @@ const getSchedules = async (req, res, next) => {
     const { date } = req.query;
     let schedules;
     if (date) {
-      const endDate = date.split('-').map((item, index) => {
-        if(index === 2) {
-          return (+item) + 1
-        }
-        return item
-      })
-      
       schedules = await Schedule.findAll({
         where: {
           schedule: {
             [Op.gte]: date,
-            [Op.lte]: endDate.join('-'),
+            [Op.lte]: moment(date).add(1, 'days').format('YYYY-MM-DD'),
           },
         },
       });

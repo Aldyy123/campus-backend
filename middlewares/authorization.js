@@ -11,7 +11,7 @@ const authorization = async (req, res, next) => {
 
     const token = authorization.split(" ")[1];
     const decodedToken = await initAdmin.auth().verifyIdToken(token);
-    if (decodedToken?.uid) {
+    if (decodedToken?.role === 'dosen') {
       req.decodeToken = decodedToken;
       return next();
     } else {

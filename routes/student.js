@@ -6,10 +6,10 @@ const {
 const {
     deleteUser
 } = require('../controllers/user');
-const authorization = require('../middlewares/authorization');
+const authentication = require('../middlewares/authentication');
 const router = require('express').Router();
 
-router.route('/').post(authorization, insertBiodataStudent)
-router.route('/id/:id').get(authorization, findOneStudent).put(authorization, updateOneStudent)
+router.route('/').post(authentication, insertBiodataStudent)
+router.route('/id/:id').get(authentication, findOneStudent).put(authentication, updateOneStudent)
 
 module.exports = router;
