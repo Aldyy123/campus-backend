@@ -12,6 +12,14 @@ module.exports = (sequelize, DataTypes) => {
                 onDelete: 'CASCADE',
                 onUpdate: 'CASCADE',
             })
+
+            Lecturer.hasMany(models.Schedule, {
+                foreignKey: 'nidn',
+                as: 'schedule',
+                sourceKey: 'nidn',
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE',
+            })
         }
     }
     Lecturer.init({

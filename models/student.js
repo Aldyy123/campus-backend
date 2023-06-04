@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         classmate: {
-            type: DataTypes.STRING,
+            type: DataTypes.CHAR(10),
             allowNull: false,
         },
         major: {

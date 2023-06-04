@@ -14,16 +14,13 @@ const {
 
 const insertUser = async (req, res, next) => {
     try {
-        const {
-            email,
-        } = req.body
         const user = await User.findOrCreate({
             where: {
                 email: req.decodeToken.email
             },
             defaults: {
                 role: req.decodeToken.role,
-                email,
+                email: req.decodeToken.email
             }
         })
         res.json({
@@ -48,7 +45,7 @@ const signInEmail = async (req, res, next) => {
             role
         })
         const userLogin = await signInWithCustomToken(auth, token)
-        res.json({
+        res.json({  
             message: 'Successfully login',
             user: userLogin.user
         })
