@@ -12,10 +12,10 @@ module.exports = (sequelize, DataTypes) => {
                 onDelete: 'CASCADE',
                 onUpdate: 'CASCADE',
             })
-            Schedule.belongsTo(models.Student, {
-                foreignKey: 'classmate',
-                as: 'student',
-            })
+            // Schedule.belongsTo(models.Student, {
+            //     foreignKey: 'classmate',
+            //     as: 'student',
+            // })
             Schedule.belongsTo(models.Lesson, {
                 foreignKey: 'lesson_id',
                 as: 'lesson',

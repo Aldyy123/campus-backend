@@ -1,4 +1,6 @@
-const { Lesson, Schedule } = require("../models");
+const { Lesson, Schedule, Lecturer, Sequelize } = require("../models");
+const moment = require("moment");
+const { Op } = require("sequelize");
 
 const createLessonSchedule = async (req, res, next) => {
   try {
@@ -32,6 +34,42 @@ const createLessonSchedule = async (req, res, next) => {
 
 const getSchedules = async (req, res, next) => {
   try {
+    const { date } = req.query;
+    let schedules;
+    if (date) {
+      const endDate = date.split('-').map((item, index) => {
+        if(index === 2) {
+          return (+item) + 1
+        }
+        return item
+      })
+      
+      schedules = await Schedule.findAll({
+        where: {
+          schedule: {
+            [Op.gte]: date,
+            [Op.lte]: endDate.join('-'),
+          },
+        },
+      });
+    } else {
+      schedules = await Schedule.findAll({
+        where: {
+          schedule: {
+            [Op.gte]: Sequelize.literal("CURRENT_DATE"),
+          },
+        },
+      });
+    }
+    if (!schedules) {
+      return res.status(404).json({
+        message: "Schedules not found",
+      });
+    }
+    return res.status(200).json({
+      message: "Success get schedules",
+      data: schedules,
+    });
   } catch (error) {
     return next(error);
   }
