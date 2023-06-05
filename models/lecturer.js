@@ -33,14 +33,13 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         nidn: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             unique: {
                 name: 'nidn',
                 msg: 'Maaf NIDN sudah ada'
             },
             allowNull: false,
         },
-        extra: DataTypes.JSONB,
     }, {
         sequelize,
         modelName: 'Lecturer',

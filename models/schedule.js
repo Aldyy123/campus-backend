@@ -45,12 +45,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         nidn: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         rechedule_date: DataTypes.DATE,
         description: DataTypes.TEXT,
-        extra: DataTypes.JSONB,
     }, {
         sequelize,
         modelName: 'Schedule',

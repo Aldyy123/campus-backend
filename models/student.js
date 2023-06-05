@@ -44,7 +44,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(9),
             allowNull: false,
         },
-        extra: DataTypes.JSONB,
     }, {
         sequelize,
         modelName: 'Student',

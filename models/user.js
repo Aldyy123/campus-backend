@@ -42,7 +42,6 @@ module.exports =  (sequelize, DataTypes) => {
             defaultValue: 'mahasiswa',
             allowNull: false,
         },
-        extra: DataTypes.JSONB,
     }, {
         sequelize,
         modelName: 'User',

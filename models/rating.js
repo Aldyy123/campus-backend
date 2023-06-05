@@ -14,8 +14,9 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
       });
-      Rating.belongsTo(models.User, {
+      Rating.belongsTo(models.Lecturer, {
         foreignKey: "nidn",
+        targetKey: "nidn",
         as: "lecturer",
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
@@ -25,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         as: "student",
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
+        targetKey: "nim",
       });
     }
   }
@@ -40,11 +42,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       nidn: {
-        type: DataTypes.INTEGER(20),
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       nim: {
-        type: DataTypes.INTEGER(20),
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       rating: {
