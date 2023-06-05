@@ -38,12 +38,22 @@ const insertUser = async (req, res, next) => {
 
 const signInEmail = async (req, res, next) => {
   try {
-    const { email, password, role } = req.body;
+    const { email, password } = req.body;
     const authAdmin = initAdmin.auth();
     const auth = getAuth();
+    const findOneUser = await User.findOne({
+      where: {
+        email,
+      }
+    })
+    if(!findOneUser) {
+      return res.status(404).json({
+        message: "User not found, please create account first"
+      })
+    }
     const users = await signInWithEmailAndPassword(auth, email, password);
     const token = await authAdmin.createCustomToken(users.user.uid, {
-      role,
+      role: findOneUser.role,
     });
     const userLogin = await signInWithCustomToken(auth, token);
     res.json({
@@ -117,13 +127,6 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
-const updateUser = async (id, data) => {
-  try {
-    const user = await User.update({});
-  } catch (error) {
-    return next(error);
-  }
-};
 
 const checkUserExist = async (field, value) => {
   try {
