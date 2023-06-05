@@ -1,2 +1,8 @@
 runtime: nodejs16
 service: default
+
+env_variables:
+  SQL_USER: "root"
+  SQL_PASSWORD: "root"
+  SQL_DATABASE: "campus"
+  INSTANCE_CONNECTION_NAME: "campus-818f1:asia-southeast2:backend-campus"
