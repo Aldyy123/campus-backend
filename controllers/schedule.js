@@ -122,8 +122,41 @@ const updateScheduleDosen = async (req, res, next) => {
   }
 };
 
+const deleteSchedule = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const schedule = await Schedule.findOne({
+      where: {
+        id,
+      }
+    })
+    if(!schedule) {
+      return res.status(404).json({
+        message: "Schedule not found"
+      })
+    }
+
+    const deleteSchedule = await Schedule.destroy({
+      where: {
+        id
+      }
+    })
+    if(!deleteSchedule) {
+      return res.status(400).json({
+        message: "Failed delete schedule"
+      })
+    }
+    return res.status(200).json({
+      message: "Success delete schedule"
+    })
+  } catch (error) {
+    return next(error);
+  }
+}
+
 module.exports = {
   createLessonSchedule,
   getSchedules,
   updateScheduleDosen,
+  deleteSchedule
 };

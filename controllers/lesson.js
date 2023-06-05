@@ -82,9 +82,42 @@ const updateLesson = async (req, res, next) => {
   }
 }
 
+const deleteLesson = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const lesson = await Lesson.findOne({
+      where: {
+        id
+      }      
+    })
+    if(!lesson) {
+      return res.status(404).json({
+        message: "Lesson not found"
+      })
+    }
+    const deleteLesson = await Lesson.destroy({
+      where: {
+        id
+      }
+    })
+    if(!deleteLesson) {
+      return res.status(400).json({
+        message: "Failed delete lesson"
+      })
+    }
+
+    return res.status(200).json({
+      message: "Success delete lesson"
+    })
+  } catch (error) {
+    return next(error);
+  }
+}
+
 module.exports = {
     createLesson,
     getAllLessons,
     getLessonById,
-    updateLesson
+    updateLesson,
+    deleteLesson
 }

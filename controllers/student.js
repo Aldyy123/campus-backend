@@ -4,7 +4,7 @@ const {
     User
 } = require('../models');
 const {
-    findOneUser, checkUserExist
+    findOneUser
 } = require('./user');
 
 const insertBiodataStudent = async (req, res, next) => {
