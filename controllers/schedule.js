@@ -41,7 +41,7 @@ const getSchedules = async (req, res, next) => {
         where: {
           schedule: {
             [Op.gte]: date,
-            [Op.lte]: moment(date).add(1, 'days').format('YYYY-MM-DD'),
+            [Op.lte]: moment(date).add(1, "days").format("YYYY-MM-DD"),
           },
         },
       });
@@ -68,7 +68,62 @@ const getSchedules = async (req, res, next) => {
   }
 };
 
+const updateScheduleDosen = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const schedule = await Schedule.findOne({
+      where: {
+        id,
+      },
+    });
+    if (!schedule) {
+      return res.status(404).json({
+        message: "Schedule not found",
+      });
+    }
+
+    const { name } = req.body;
+    let lessons;
+    if (name) {
+      lessons = await Lesson.findOne({
+        where: {
+          name,
+        },
+      });
+
+      if (!lessons) {
+        return res.status(404).json({
+          message: "Sorry, Lesson not found. Please create lesson first",
+        });
+      }
+    }
+
+    const updateSchedule = await Schedule.update(
+      {
+        ...schedule,
+        ...req.body,
+      },
+      {
+        where: {
+          id,
+        },
+      }
+    );
+    if(!updateSchedule) {
+      return res.status(400).json({
+        message: "Failed update schedule"
+      })
+    }
+    return res.status(200).json({
+      message: "Success update schedule",
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   createLessonSchedule,
   getSchedules,
+  updateScheduleDosen,
 };

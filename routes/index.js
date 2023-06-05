@@ -10,5 +10,6 @@ router.use('/users', users);
 router.use('/students', student);
 router.use('/lessons', lesson);
 router.use('/lecturers', lecturer);
+router.use('/', (req, res) => res.send('Welcome to API'));
 
 module.exports = router;

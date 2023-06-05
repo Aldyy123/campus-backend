@@ -2,12 +2,6 @@ const { Model, Sequelize } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Lesson extends Model {
     static associate(models) {
-      Lesson.belongsTo(models.Lecturer, {
-        foreignKey: "nidn",
-        as: "lecturer",
-        foreignKeyConstraint: true,
-        targetKey: "nidn",
-      });
       Lesson.hasMany(models.Schedule, {
         foreignKey: "lesson_id",
         as: "schedule",
