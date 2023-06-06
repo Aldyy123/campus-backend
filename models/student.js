@@ -12,6 +12,14 @@ module.exports = (sequelize, DataTypes) => {
                 onDelete: 'CASCADE',
                 onUpdate: 'CASCADE',
             })
+            Student.belongsToMany(models.Lesson, {
+                sourceKey: 'id',
+                foreignKey: 'favourite_lessons',
+                as: 'lessons',
+                through: 'StudentLesson',
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE',
+            })
         }
     }
     Student.init({
@@ -44,6 +52,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(9),
             allowNull: false,
         },
+        favourite_lessons: DataTypes.ARRAY(DataTypes.STRING)
     }, {
         sequelize,
         modelName: 'Student',

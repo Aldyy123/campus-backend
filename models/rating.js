@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         as: "lesson",
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
+        targetKey: "id",
       });
       Rating.belongsTo(models.Lecturer, {
         foreignKey: "nidn",
@@ -49,8 +50,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      rating: {
-        type: DataTypes.INTEGER(2),
+      star: {
+        type: DataTypes.DOUBLE(2, 2),
         allowNull: false,
       },
       comment: DataTypes.TEXT,

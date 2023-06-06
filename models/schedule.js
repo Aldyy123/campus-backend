@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
             // Schedule.belongsTo(models.Student, {
             //     foreignKey: 'classmate',
             //     as: 'student',
+            //     keyType: DataTypes.CHAR(10)
             // })
             Schedule.belongsTo(models.Lesson, {
                 foreignKey: 'lesson_id',

@@ -5,6 +5,11 @@ const { Op } = require("sequelize");
 const createLessonSchedule = async (req, res, next) => {
   try {
     const { name, schedule_date, room, sks, nidn } = req.body;
+    if(moment(schedule_date).format("YYYY-MM-DD") < moment().format("YYYY-MM-DD")) {
+      return res.status(400).json({
+        message: "Schedule date must be greater than today"
+      })
+    }
     const lesson = await Lesson.findOne({
       where: {
         name,

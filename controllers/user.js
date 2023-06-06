@@ -89,7 +89,7 @@ const signUpEmail = async (req, res, next) => {
   }
 };
 
-const findOneUser = async (email, relational) => {
+const findOneUser = async (email, relational = '') => {
   try {
     const user = await User.findOne({
       where: {
@@ -163,6 +163,19 @@ const sendEmailForgotPassword = async (req, res, next) => {
   }
 };
 
+const authMe = async (req, res, next) => {
+  try {
+    const relational = req.decodeToken.role === "dosen" ? "lecturer" : "student";
+    const users = await findOneUser(req.decodeToken.email, relational);
+    return res.status(200).json({
+      message: "Success get user",
+      data: users,
+    })
+  } catch (error) {
+    return next(error);
+  }
+}
+
 module.exports = {
   insertUser,
   signInEmail,
@@ -171,4 +184,5 @@ module.exports = {
   checkUserExist,
   sendEmailForgotPassword,
   signUpEmail,
+  authMe
 };
