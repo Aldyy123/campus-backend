@@ -1,10 +1,5 @@
 steps:
-  - name: "gcr.io/campus-818f1/campus-backend"
-    entrypoint: "bash"
-    args:
-      - -c
-      - wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy
-        chmod +x cloud_sql_proxy
-        ./cloud_sql_proxy -instances=campus-818f1:asia-southeast2:campus-backend=tcp:5432 &
-        gcloud app deploy
-timeout: "1600s"
+- name: 'gcr.io/campus-818f1/campus-backend'
+  entrypoint: 'bash'
+  args: ['build', 'gcloud app deploy']
+timeout: '1600s'
