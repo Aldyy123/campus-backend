@@ -178,7 +178,7 @@ const authMe = async (req, res, next) => {
     const relational = req.decodeToken.role === "dosen" ? "lecturer" : "student";
     const users = await findOneUser(req.decodeToken.email, relational);
     return res.status(200).json({
-      message: "Success get user",
+      message: "Success get user from auth me",
       data: users,
     })
   } catch (error) {

@@ -12,14 +12,14 @@ module.exports = (sequelize, DataTypes) => {
                 onDelete: 'CASCADE',
                 onUpdate: 'CASCADE',
             })
-            Schedule.belongsTo(models.Student, {
-                foreignKey: 'classmate',
-                as: 'student',
-                keyType: DataTypes.CHAR(10),
-                targetKey: 'classmate',
-                constraints: false,
-                foreignKeyConstraint: false,
-            })
+            // Schedule.belongsTo(models.Student, {
+            //     foreignKey: 'classmate',
+            //     as: 'student',
+            //     keyType: DataTypes.CHAR(10),
+            //     targetKey: 'classmate',
+            //     constraints: false,
+            //     foreignKeyConstraint: false,
+            // })
             Schedule.belongsTo(models.Lesson, {
                 foreignKey: 'lesson_id',
                 as: 'lesson',
