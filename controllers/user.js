@@ -80,9 +80,19 @@ const signUpEmail = async (req, res, next) => {
       role,
     });
     const userLogin = await signInWithCustomToken(auth, token);
-    res.json({
+    const userDatabse = await User.findOrCreate({
+      where: {
+        email: userLogin.user.email,
+      },
+      defaults: {
+        role,
+        email: userLogin.user.email,
+      },
+    });
+    return res.json({
       message: "Successfully register",
-      user: userLogin.user,
+      user: {...userLogin.user, ...userDatabse},
+
     });
   } catch (error) {
     return next(error);

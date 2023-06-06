@@ -40,6 +40,13 @@ module.exports = (sequelize, DataTypes) => {
             },
             allowNull: false,
         },
+        // face_id: {
+        //     type: DataTypes.STRING,
+        //     unique: {
+        //         name: 'face_id',
+        //         msg: 'Maaf wajah sepertinya sama dengan dosen lain'
+        //     }
+        // },
     }, {
         sequelize,
         modelName: 'Lecturer',

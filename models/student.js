@@ -52,6 +52,13 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(9),
             allowNull: false,
         },
+        // face_id: {
+        //     type: DataTypes.STRING,
+        //     unique: {
+        //         name: 'face_id',
+        //         msg: 'Maaf wajah sepertinya sama dengan mahasiswa lain'
+        //     }
+        // },
         favourite_lessons: DataTypes.ARRAY(DataTypes.STRING)
     }, {
         sequelize,

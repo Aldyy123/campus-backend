@@ -1,6 +1,7 @@
-const { Lesson, Schedule, Lecturer, Sequelize } = require("../models");
+const { Lesson, Schedule, Absent, Sequelize } = require("../models");
 const moment = require("moment");
 const { Op } = require("sequelize");
+const { checkDataExist } = require("../helpers/helper");
 
 const createLessonSchedule = async (req, res, next) => {
   try {
@@ -159,9 +160,85 @@ const deleteSchedule = async (req, res, next) => {
   }
 }
 
+/**
+ * Create Absent student
+ * @param {integer} nim
+ * @param {uuid} schedule_id
+ * @param {string} reason
+ * @param {string} status
+ * @returns {object} absent
+ */
+const absentScheduleForStudent = async (req, res, next) => {
+  try {
+    const { nim, schedule_id, reason, face_id } = req.body;
+    const schedule = await checkDataExist(Schedule, "id", schedule_id);
+    if (!schedule) {
+      return res.status(404).json({
+        message: "Schedule not found",
+      });
+    }
+
+    const studentExist = await checkDataExist(Student, "face_id", face_id);
+    if (!studentExist) {
+      return res.status(404).json({
+        message: "Sorry face id not match with our database",
+      });
+    }
+
+    const absent = await Absent.create({
+      nim,
+      schedule_id,
+      reason,
+      status: 'present',
+    })
+
+    return res.status(201).json({
+      message: "Success absent schedule",
+      data: absent
+    })
+  } catch (error) {
+    return next(error);
+  }
+}
+
+const insertManualAbsentFromLecturer = async (req, res, next) => {
+  try {
+    const { nim, schedule_id, reason, status } = req.body;
+    const schedule = await checkDataExist(Schedule, "id", schedule_id);
+    if (!schedule) {
+      return res.status(404).json({
+        message: "Schedule not found",
+      });
+    }
+
+    const student = await checkDataExist(Student, "nim", nim);
+    if (!student) {
+      return res.status(404).json({
+        message: "Schedule not found",
+      });
+    }
+
+    const absent = await Absent.create({
+      nim,
+      schedule_id,
+      reason,
+      status,
+    })
+
+    return res.status(201).json({
+      message: "Success absent schedule",
+      data: absent
+    })
+  } catch (error) {
+    return next(error);
+  }
+}
+
 module.exports = {
   createLessonSchedule,
   getSchedules,
   updateScheduleDosen,
-  deleteSchedule
+  deleteSchedule,
+  absentScheduleForStudent,
+  insertManualAbsentFromLecturer
 };

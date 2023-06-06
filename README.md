@@ -7,7 +7,7 @@ Project ini adalah capstone project bangkit.
 
 1. cloning github terlebih dahulu
 2. install dependecies dengan cara ``` npm install ```
-3. lalu jalankan server dengan cara ``` npm run start-dev ```
+3. lalu jalankan server dengan cara ``` npm run dev ```
 4. kemudian buka server di ```localhost:3000```
 
 ### TODO
