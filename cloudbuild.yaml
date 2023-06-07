@@ -1,5 +1,17 @@
 steps:
-- name: 'gcr.io/campus-818f1/campus-backend'
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/campus-818f1/campus-backend', '.' ]
+images:
+- 'gcr.io/campus-818f1/campus-backend'
+
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'push', '-t', 'gcr.io/campus-818f1/campus-backend', '.' ]
+images:
+- 'gcr.io/campus-818f1/campus-backend'
+
+steps:
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: 'bash'
-  args: ['build', 'gcloud app deploy']
+  args: ['-c', 'gcloud config set app/cloud_build_timeout 1600 && gcloud app deploy']
 timeout: '1600s'
