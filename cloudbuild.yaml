@@ -1,19 +1,21 @@
+# App Engine Deployment
 # steps:
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: [ 'build', '-t', 'gcr.io/campus-818f1/campus-backend:$COMMIT_SHA', '-t', 'gcr.io/campus-818f1/campus-backend:latest', '.']
-# images:
-# - 'gcr.io/campus-818f1/campus-backend:latest'
-# - 'gcr.io/campus-818f1/campus-backend:$COMMIT_SHA'
+# - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+#   entrypoint: 'bash'
+#   args: ['-c', 'gcloud app deploy']
+# timeout: '1600s'
 
-# steps:
-# - name: 'gcr.io/cloud-builders/docker'
-#   args: [ 'push', '-t', 'gcr.io/campus-818f1/campus-backend:$COMMIT_SHA', '-t', 'gcr.io/campus-818f1/campus-backend:latest', '.']
-# images:
-# - 'gcr.io/campus-818f1/campus-backend:latest'
-# - 'gcr.io/$PROJECT_ID/campus-backend:$COMMIT_SHA'
-
+# Cloud Run Deployment
 steps:
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/campus-818f1/campus-backend', '.']
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/campus-818f1/campus-backend']
+# Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: 'bash'
-  args: ['-c', 'gcloud app deploy']
-timeout: '1600s'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'campus-backend', '--image', 'gcr.io/campus-818f1/campus-backend', '--region', 'asia-southeast1', '--source', '.', '--add-cloudsql-instances', 'campus-818f1:asia-southeast1:campus-backend', '--allow-unauthenticated']
+images:
+- gcr.io/campus-818f1/campus-backend
