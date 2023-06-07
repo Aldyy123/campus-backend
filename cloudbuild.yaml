@@ -1,9 +1,9 @@
-steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'gcr.io/campus-818f1/campus-backend:$COMMIT_SHA', '-t', 'gcr.io/campus-818f1/campus-backend:latest', '.']
-images:
-- 'gcr.io/campus-818f1/campus-backend:latest'
-- 'gcr.io/campus-818f1/campus-backend:$COMMIT_SHA'
+# steps:
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: [ 'build', '-t', 'gcr.io/campus-818f1/campus-backend:$COMMIT_SHA', '-t', 'gcr.io/campus-818f1/campus-backend:latest', '.']
+# images:
+# - 'gcr.io/campus-818f1/campus-backend:latest'
+# - 'gcr.io/campus-818f1/campus-backend:$COMMIT_SHA'
 
 # steps:
 # - name: 'gcr.io/cloud-builders/docker'
