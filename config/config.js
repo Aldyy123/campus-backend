@@ -15,9 +15,9 @@ const config = {
     password: String(process.env.PROD_DATABASE_PASSWORD),
     // host: String(process.env.PROD_DATABASE_HOST),
     dialect: "postgres",
-    host: '/cloudsql/campus-818f1:asia-southeast2:backend-campus',
+    host: `/cloudsql/${process.env.PROD_DATABASE_HOST}`,
     dialectOptions: {
-        socketPath: '/cloudsql/campus-818f1:asia-southeast2:backend-campus'
+        socketPath: `/cloudsql/${process.env.PROD_DATABASE_HOST}`
     },
     pool: {
         max: 5,
