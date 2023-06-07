@@ -36,6 +36,5 @@ steps:
     - 'DB_USER="root"'
     - '--set-env-vars'
     - 'DB_PASS="root"'
-    
- images:
- - 'gcr.io/$PROJECT_ID/campus-backend:$COMMIT_SHA'
+  images:
+  - 'gcr.io/$PROJECT_ID/campus-backend:$COMMIT_SHA'
