@@ -16,6 +16,13 @@ steps:
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'campus-backend', '--image', 'gcr.io/campus-818f1/campus-backend', '--region', 'asia-southeast1', '--source', '.', '--add-cloudsql-instances', 'campus-818f1:asia-southeast1:campus-backend', '--allow-unauthenticated']
-images:
-- gcr.io/campus-818f1/campus-backend
+ args:
+   - 'run'
+   - 'deploy'
+   - 'campus-backend'
+   - '--image'
+   - 'gcr.io/$PROJECT_ID/campus-backend:$COMMIT_SHA'
+   - '--region'
+   - 'asia-southeast2'
+ images:
+ - 'gcr.io/$PROJECT_ID/campus-backend:$COMMIT_SHA'
