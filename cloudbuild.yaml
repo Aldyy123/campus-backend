@@ -7,9 +7,7 @@
 
 # Cloud Run Deployment
 steps:
-  - name: node:18.16.0
-    entrypoint: npm
-    args: ["install"]
+  # Create env file for production
   - name: node:18.16.0
     entrypoint: npm
     args: ["run", "create-env"]
