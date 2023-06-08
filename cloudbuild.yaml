@@ -20,11 +20,11 @@ steps:
       - "-c"
       - |
         gcloud run deploy production --image gcr.io/campus-818f1/campus-backend \
-        --add-cloudsql-instances $$PROD_DATABASE_HOST \
-        --set-env-vars INSTANCE_UNIX_SOCKET="/cloudsql/$$PROD_DATABASE_HOST" \
-        --set-env-vars INSTANCE_CONNECTION_NAME=$$PROD_DATABASE_HOST \
-        --set-env-vars DB_NAME=$$PROD_DATABASE_NAME \
-        --set-env-vars DB_USER=$$PROD_DATABASE_USER \
-        --set-env-vars DB_PASS=$$PROD_DATABASE_PASS \
+        --add-cloudsql-instances ${_PROD_DATABASE_HOST} \
+        --set-env-vars INSTANCE_UNIX_SOCKET="/cloudsql/${_PROD_DATABASE_HOST}" \
+        --set-env-vars INSTANCE_CONNECTION_NAME=${_PROD_DATABASE_HOST} \
+        --set-env-vars DB_NAME=${_PROD_DATABASE_NAME} \
+        --set-env-vars DB_USER=${_PROD_DATABASE_USER} \
+        --set-env-vars DB_PASS=${_PROD_DATABASE_PASS} \
         --region asia-southeast2 \
         --allow-unauthenticated
