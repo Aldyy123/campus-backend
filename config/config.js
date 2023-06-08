@@ -17,15 +17,15 @@ const config = {
     dialect: "postgres",
     host: `/cloudsql/${String(process.env.PROD_DATABASE_HOST)}`,
     dialectOptions: {
-        socketPath: `/cloudsql/${String(process.env.PROD_DATABASE_HOST)}`
+      socketPath: `/cloudsql/${String(process.env.PROD_DATABASE_HOST)}`,
     },
     pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
     },
-  }
+  },
 };
 
 module.exports = config;
