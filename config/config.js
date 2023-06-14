@@ -10,14 +10,14 @@ const config = {
     dialect: "postgres",
   },
   production: {
-    database: String(process.env.PROD_DATABASE_NAME),
-    username: String(process.env.PROD_DATABASE_USERNAME),
-    password: String(process.env.PROD_DATABASE_PASSWORD),
+    database: String(process.env.DB_NAME),
+    username: String(process.env.DB_USER),
+    password: String(process.env.DB_PASS),
     // host: String(process.env.PROD_DATABASE_HOST),
     dialect: "postgres",
-    host: `/cloudsql/${String(process.env.PROD_DATABASE_HOST)}`,
+    host: `/cloudsql/${String(process.env.INSTANCE_CONNECTION_NAME)}`,
     dialectOptions: {
-      socketPath: `/cloudsql/${String(process.env.PROD_DATABASE_HOST)}`,
+      socketPath: `/cloudsql/${String(process.env.INSTANCE_CONNECTION_NAME)}`,
     },
     pool: {
       max: 5,
