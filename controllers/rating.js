@@ -128,7 +128,40 @@ const getAllRatingLessonWithLecturer = async (req, res, next) => {
   }
 };
 
+const updateRating = async (req, res, next) => {
+  try {
+    const { rating_id } = req.params;
+    const existData = await checkDataExist(Rating, "id", rating_id);
+    if (!existData) return;
+    let data = {}
+    if(!req.body.star) {
+      return res.status(400).json({
+        message: "Star is required",
+      });
+    }
+    data.star = req.body.star
+    if(req.body.comment) data.comment = req.body.comment
+
+    const rating = await Rating.update(
+      data,
+      {
+        where: {
+          id: rating_id,
+        },
+      }
+    );
+    
+    return res.status(200).json({
+      message: "Success update rating",
+      data: rating,
+    })
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   insertRating,
   getAllRatingLessonWithLecturer,
+  updateRating
 };
