@@ -160,8 +160,21 @@ const updateRating = async (req, res, next) => {
   }
 };
 
+const getAllRating = async (req, res, next) => {
+  try {
+    const getAllRating = await Rating.findAll()
+    return res.status(200).json({
+      message: "Success get all rating",
+      data: getAllRating
+    })
+  } catch (error) {
+    return next(error);
+  }
+}
+
 module.exports = {
   insertRating,
   getAllRatingLessonWithLecturer,
-  updateRating
+  updateRating,
+  getAllRating
 };

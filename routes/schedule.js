@@ -1,4 +1,4 @@
-const { createReqSchedule, getReqSchedule } = require('../controllers/req-schedule');
+const { createReqSchedule, getReqSchedule, getAllReschedule } = require('../controllers/req-schedule');
 const { createLessonSchedule, getSchedules, updateScheduleDosen, deleteSchedule, absentScheduleForStudent, insertManualAbsentFromLecturer } = require('../controllers/schedule');
 const authentication = require('../middlewares/authentication');
 const authorization = require('../middlewares/authorization');
@@ -11,5 +11,6 @@ router.route('/:id').put(authentication, authorization, updateScheduleDosen).del
 router.route('/:id/absent/student').post(authentication, absentScheduleForStudent)
 router.route('/:id/absent/lecturer').post(authentication, authorization, insertManualAbsentFromLecturer)
 router.route('/req-reschedule/:id').post(authentication, createReqSchedule).get(authentication, authorization, getReqSchedule)
+router.route('/req-reschedule/').get(getAllReschedule)
 
 module.exports = router;

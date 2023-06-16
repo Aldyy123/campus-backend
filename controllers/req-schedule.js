@@ -103,7 +103,20 @@ const getReqSchedule = async (req, res, next) => {
   }
 };
 
+const getAllReschedule = async (req, res, next) => {
+  try {
+    const getAllReschedule = await ReqSchedule.findAll();
+    return res.status(200).json({
+      message: "Success get all reschedule",
+      data: getAllReschedule,
+    })
+  } catch (error) {
+    return next(error);
+  }
+}
+
 module.exports = {
   createReqSchedule,
   getReqSchedule,
+  getAllReschedule
 };

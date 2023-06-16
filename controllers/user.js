@@ -186,6 +186,20 @@ const authMe = async (req, res, next) => {
   }
 }
 
+const getAllUsers = async (req, res, next) => {
+  try {
+      const users = await User.findAll({
+        include: ['lecturer', 'student']
+      })
+      return res.status(200).json({
+          message: "Success get all users",
+          data: users
+      })
+  } catch (error) {
+      return next(error)
+  }
+}
+
 module.exports = {
   insertUser,
   signInEmail,
@@ -194,5 +208,6 @@ module.exports = {
   checkUserExist,
   sendEmailForgotPassword,
   signUpEmail,
-  authMe
+  authMe,
+  getAllUsers
 };

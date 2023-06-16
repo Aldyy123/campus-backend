@@ -1,0 +1,1099 @@
+{
+	"info": {
+		"_postman_id": "3c49b30f-375a-49ba-b39d-d74207cdfe1e",
+		"name": "Bangkit Campus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9576519"
+	},
+	"item": [
+		{
+			"name": "Students",
+			"item": [
+				{
+					"name": "Create biodata student",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Aldyy\",\n    \"nim\" : 12287662,\n    \"classmate\": \"AC.13.56\",\n    \"major\": \"Sistem Informasi - S1\",\n    \"start_year\": \"2020/2021\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/students/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"students",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Student by Email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Aldyy\",\n    \"nim\" : 122111,\n    \"classmate\": \"AB.12.55\",\n    \"major\": \"Sistem Informasi - D3\",\n    \"start_year\": \"2021/2022\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/students/id/844535d8-58d7-4a57-b9b1-259c8ffe846e",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"students",
+								"id",
+								"844535d8-58d7-4a57-b9b1-259c8ffe846e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One Student",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Aldyy\",\n    \"nim\" : 122111,\n    \"classmate\": \"AB.12.55\",\n    \"major\": \"Sistem Informasi - D3\",\n    \"start_year\": \"2021/2022\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/students/id/3b877a08-ae45-4649-9744-65fbdb2b6802",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"students",
+								"id",
+								"3b877a08-ae45-4649-9744-65fbdb2b6802"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lessons",
+			"item": [
+				{
+					"name": "Update lessons",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Statistika\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/lessons/id/7d15ae03-76c8-4bb4-a3cb-b3047d16d9df",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"lessons",
+								"id",
+								"7d15ae03-76c8-4bb4-a3cb-b3047d16d9df"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Lessons",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Statika\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/lessons/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"lessons",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Lessons",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Aldyy\",\n    \"nim\" : 122111,\n    \"classmate\": \"AB.12.55\",\n    \"major\": \"Sistem Informasi - D3\",\n    \"start_year\": \"2021/2022\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/lessons",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"lessons"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One lesson by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/lessons/id/97baffb5-2914-45d5-bc81-a5d1f7eeba8e",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"lessons",
+								"id",
+								"97baffb5-2914-45d5-bc81-a5d1f7eeba8e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Lessons by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/lessons/id/3b877a08-ae45-4649-9744-65fbdb2b6802",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"lessons",
+								"id",
+								"3b877a08-ae45-4649-9744-65fbdb2b6802"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rating",
+			"item": [
+				{
+					"name": "Create Rating",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nidn\" : \"122111\",\n    \"comment\": \"Wah ini sangat keren\", // Optional\n    \"rating\": 4,\n    \"nim\": \"81267217\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/ratings/lesson/b1a94c59-1689-4667-89b2-88016050c277",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"ratings",
+								"lesson",
+								"b1a94c59-1689-4667-89b2-88016050c277"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lecturer",
+			"item": [
+				{
+					"name": "Update Lecturer by Email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Aldyy\",\n    \"nidn\" : 7272727,\n    \"email\": \"nanana@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/lecturers/id/77e1534f-8fe7-4c3e-bb25-e67cbf7c7231",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"lecturers",
+								"id",
+								"77e1534f-8fe7-4c3e-bb25-e67cbf7c7231"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create biodata lecturer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Aldyy\",\n    \"nidn\" : 122111\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/lecturers/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"lecturers",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One Lecturer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/lecturers/id/d3ae6db0-f08c-426b-b6a5-ec15c6546ebc",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"lecturers",
+								"id",
+								"d3ae6db0-f08c-426b-b6a5-ec15c6546ebc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Auth",
+			"item": [
+				{
+					"name": "Find or Create User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/users/find-or-create",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"find-or-create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/id/3b877a08-ae45-4649-9744-65fbdb2b6802",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"id",
+								"3b877a08-ae45-4649-9744-65fbdb2b6802"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" :\"bocah.ngik@gmail.com\",\n    \"password\" : \"123123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" :\"bocah.ngik@gmail.com\",\n    \"password\" : \"123123\",\n    \"role\": \"mahasiswa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find One user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Aldyy\",\n    \"nim\" : 122111,\n    \"classmate\": \"AB.12.55\",\n    \"major\": \"Sistem Informasi - D3\",\n    \"start_year\": \"2021/2022\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/users/id/844535d8-58d7-4a57-b9b1-259c8ffe846e",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"id",
+								"844535d8-58d7-4a57-b9b1-259c8ffe846e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth Me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/me",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Schedules",
+			"item": [
+				{
+					"name": "Get Schedule by Date",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/schedules",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"schedules"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2023-06-3",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reqeust Schedule",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/schedules/req-reschedule/2062c81d-2b85-453f-bf38-a7e32086885f",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"schedules",
+								"req-reschedule",
+								"2062c81d-2b85-453f-bf38-a7e32086885f"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2023-06-3",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Shedule by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/schedules/id/3b877a08-ae45-4649-9744-65fbdb2b6802",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"schedules",
+								"id",
+								"3b877a08-ae45-4649-9744-65fbdb2b6802"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Schedule Lesson for Dosen",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Programing\",\n    \"schedule_date\": 1686034365108,\n    \"sks\": 3,\n    \"room\": \"6D\",\n    \"nidn\": \"122111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/schedules/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"schedules",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Request Schedule for Student",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"reason\": \"Sedang ada halangan di embun pagi hari\",\n    \"schedule_date\": 1686031353684,\n    \"nim\": \"122111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/schedules/req-reschedule/2062c81d-2b85-453f-bf38-a7e32086885f",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"schedules",
+								"req-reschedule",
+								"2062c81d-2b85-453f-bf38-a7e32086885f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Schedule Lesson for Dosen",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Programing\",\n    \"schedule_date\": 1685862522741,\n    \"sks\": 5,\n    \"room\": \"3D\",\n    \"nidn\": \"122111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/schedules/99916394-ff3c-4b87-957e-a2631f9a0099",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"schedules",
+								"99916394-ff3c-4b87-957e-a2631f9a0099"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ratings",
+			"item": [
+				{
+					"name": "Insert Rating lessons",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nim\" : 12287662,\n    \"nidn\": 122111,\n    \"star\": 3.2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/ratings/lesson/cb9a6cbd-e278-4807-90fe-fed4f55b9f8d",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"ratings",
+								"lesson",
+								"cb9a6cbd-e278-4807-90fe-fed4f55b9f8d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all review rating lessons",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/ratings/lesson/cb9a6cbd-e278-4807-90fe-fed4f55b9f8d/nidn/122111",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"ratings",
+								"lesson",
+								"cb9a6cbd-e278-4807-90fe-fed4f55b9f8d",
+								"nidn",
+								"122111"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Rating by ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"star\": 3.2,\n    \"comment\": \"\" // optional\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/ratings/id/b1a94c59-1689-4667-89b2-88016050c277",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"ratings",
+								"id",
+								"b1a94c59-1689-4667-89b2-88016050c277"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Absent",
+			"item": [
+				{
+					"name": "Absent Manual from Lecturer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nim\": 12212,\n    \"schedule_id\": \"2062c81d-2b85-453f-bf38-a7e32086885f\",\n    \"reason\": \"gak bisa\", // Optiona;\n    \"status\": \"absent\" // absent, present\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/schedules/:id/absent/lecturer",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"schedules",
+								":id",
+								"absent",
+								"lecturer"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2062c81d-2b85-453f-bf38-a7e32086885f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Absent Student with Face ID",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nim\": 12212,\n    \"schedule_id\": \"2062c81d-2b85-453f-bf38-a7e32086885f\",\n    \"reason\": \"\", // Optional\n    \"face_id\": \"\" // Face id from ML\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/schedules/:id/absent/student",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"schedules",
+								":id",
+								"absent",
+								"student"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2062c81d-2b85-453f-bf38-a7e32086885f"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
