@@ -3,22 +3,11 @@
 
 Project ini adalah capstone project bangkit.
 
-### Cara menjalankan aplikasi
+### Running the application
 
-1. cloning github terlebih dahulu
-2. install dependecies dengan cara ``` npm install ```
-3. lalu jalankan server dengan cara ``` npm run dev ```
-4. kemudian buka server di ```localhost:3000```
-
-### TODO
-
-List tugas Backend
-
-- Membuat login dan register menggunakan firebase dengan email verif dan masukan ke mysql
-
-- Membuat list jadwal pengajar
-
-- Membuat jadwal pengajar
-
-- Membuat Profile untuk student dan pengajar
+1. Cloning github first
+2. Settings environment which needs in file ``` .env ```
+3. install dependencies using ``` npm install ``` in terminal
+4. Then run the server using ``` npm run dev ``` in terminal
+5. Finally open the server in ``` localhost:3000 ```
 
