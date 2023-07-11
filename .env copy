@@ -8,8 +8,9 @@ DATABASE_PORT=5432
 # DEV_DATABASE_PORT=3306
 
 
-PROD_DATABASE_HOST=
-PROD_DATABASE_NAME=
-PROD_DATABASE_USERNAME=
-PROD_DATABASE_PASSWORD=
+# Configure for gcloud, you can also settings env in cloud run because env already connect to cloud run 
+INSTANCE_CONNECTION_NAME=
+DB_NAME=
+DB_USER=
+DB_PASS=
 PROD_DATABASE_PORT=5432
