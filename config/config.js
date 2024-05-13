@@ -1,5 +1,5 @@
-const dotenv = require("dotenv");
-dotenv.config();
+const dotenv = require('dotenv')
+dotenv.config()
 
 const config = {
   development: {
@@ -7,15 +7,15 @@ const config = {
     username: String(process.env.DB_USER),
     password: String(process.env.DB_PASS),
     host: String(process.env.DB_HOST),
-    dialect: "postgres",
+    dialect: 'postgres'
   },
   production: {
     database: String(process.env.DB_NAME),
     username: String(process.env.DB_USER),
     password: String(process.env.DB_PASS),
     host: String(process.env.DB_HOST),
-    dialect: "postgres",
-  },
-};
+    dialect: 'postgres'
+  }
+}
 
-module.exports = config;
+module.exports = config
