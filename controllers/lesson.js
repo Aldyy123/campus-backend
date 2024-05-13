@@ -1,98 +1,98 @@
-const { Lesson } = require("../models");
+const { Lesson } = require('../models')
 const createLesson = async (req, res, next) => {
   try {
-    const lessons = await Lesson.create(req.body);
+    const lessons = await Lesson.create(req.body)
     return res.status(201).json({
-        message: "Success create lesson",
-        data: lessons
+      message: 'Success create lesson',
+      data: lessons
     })
   } catch (error) {
-    return next(error);
+    return next(error)
   }
-};
+}
 
 const getAllLessons = async (req, res, next) => {
   try {
-    const lessons = await Lesson.findAll();
+    const lessons = await Lesson.findAll()
     return res.status(200).json({
-      message: "Success get all lessons",
-      data: lessons,
+      message: 'Success get all lessons',
+      data: lessons
     })
   } catch (error) {
-    return next(error);
+    return next(error)
   }
 }
 
 const getLessonById = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const { id } = req.params
     const lesson = await Lesson.findOne({
       where: {
-        id,
-      },
-    });
+        id
+      }
+    })
     if (!lesson) {
       return res.status(404).json({
-        message: "Lesson not found",
-      });
+        message: 'Lesson not found'
+      })
     }
     return res.status(200).json({
-      message: "Success get lesson",
-      data: lesson,
-    });
+      message: 'Success get lesson',
+      data: lesson
+    })
   } catch (error) {
-    return next(error);
+    return next(error)
   }
 }
 
 const updateLesson = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const { id } = req.params
     const lesson = await Lesson.findOne({
       where: {
-        id,
-      },
-    });
+        id
+      }
+    })
     if (!lesson) {
       return res.status(404).json({
-        message: "Lesson not found",
-      });
+        message: 'Lesson not found'
+      })
     }
     const updateLesson = await Lesson.update(
       {
         ...lesson,
-        ...req.body,
+        ...req.body
       },
       {
         where: {
-          id,
-        },
+          id
+        }
       }
-    );
-    if(!updateLesson) {
+    )
+    if (!updateLesson) {
       return res.status(400).json({
-        message: "Failed update lesson",
-      });
+        message: 'Failed update lesson'
+      })
     }
     return res.status(200).json({
-      message: "Success update lesson",
-    });
+      message: 'Success update lesson'
+    })
   } catch (error) {
-    return next(error);
+    return next(error)
   }
 }
 
 const deleteLesson = async (req, res, next) => {
   try {
-    const { id } = req.params;
+    const { id } = req.params
     const lesson = await Lesson.findOne({
       where: {
         id
-      }      
+      }
     })
-    if(!lesson) {
+    if (!lesson) {
       return res.status(404).json({
-        message: "Lesson not found"
+        message: 'Lesson not found'
       })
     }
     const deleteLesson = await Lesson.destroy({
@@ -100,24 +100,24 @@ const deleteLesson = async (req, res, next) => {
         id
       }
     })
-    if(!deleteLesson) {
+    if (!deleteLesson) {
       return res.status(400).json({
-        message: "Failed delete lesson"
+        message: 'Failed delete lesson'
       })
     }
 
     return res.status(200).json({
-      message: "Success delete lesson"
+      message: 'Success delete lesson'
     })
   } catch (error) {
-    return next(error);
+    return next(error)
   }
 }
 
 module.exports = {
-    createLesson,
-    getAllLessons,
-    getLessonById,
-    updateLesson,
-    deleteLesson
+  createLesson,
+  getAllLessons,
+  getLessonById,
+  updateLesson,
+  deleteLesson
 }
