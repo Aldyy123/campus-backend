@@ -1,16 +1,9 @@
-APPLICATION_PORT=8080
+APPLICATION_PORT=8888
+NODE_ENV=development
 
-DEV_DATABASE_HOST=127.0.0.1
-DEV_DATABASE_NAME=
-DEV_DATABASE_USERNAME=
-DEV_DATABASE_PASSWORD=
-DATABASE_PORT=5432
-# DEV_DATABASE_PORT=3306
-
-
-# Configure for gcloud, you can also settings env in cloud run because env already connect to cloud run 
-INSTANCE_CONNECTION_NAME=
-DB_NAME=
-DB_USER=
-DB_PASS=
-PROD_DATABASE_PORT=5432
+# Configure for gcloud, you can also settings env in cloud run because env already connect to cloud run
+DB_HOST=127.0.0.1
+DB_NAME=campus
+DB_USER=root
+DB_PASS=root
+DB_PORT=5432
